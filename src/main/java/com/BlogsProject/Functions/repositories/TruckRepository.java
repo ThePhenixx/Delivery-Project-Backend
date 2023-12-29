@@ -15,8 +15,11 @@ public interface TruckRepository extends JpaRepository<Truck, Integer> {
     @Query("SELECT t FROM Truck  t WHERE t.reference LIKE :reference%")
     Page<Truck> findByReference(@Param("reference") String reference, Pageable pageable);
 
+    @Query("SELECT t FROM Truck  t WHERE t.free = false AND t.driver!= null")
+    Page<Truck> findDrivedTruck(Pageable pageable);
+
     @Query("SELECT t FROM Truck  t WHERE t.free = true AND t.driver!= null")
-    Page<Truck> findFreeTruck(Pageable pageable);
+    Page<Truck> findAvailableTruck(Pageable pageable);
 
     Optional<Truck> findTruckByRegistrationNumber(String regNumber);
 }
