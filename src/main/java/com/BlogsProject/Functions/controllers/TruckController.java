@@ -37,7 +37,12 @@ public class TruckController {
         return truckService.findAvailableTruck( page, pageSize);
     }
 
-    @GetMapping("/get-drived-trucks/{page}/{pageSize}/{reference}")
+    @GetMapping("/get-all-trucks/{page}/{pageSize}/{reference}")
+    public Page<Truck> getAllTrucks(@PathVariable("page") int page, @PathVariable("pageSize") int pageSize, @PathVariable("reference") String reference) {
+        return truckService.findAllTruck( page, pageSize);
+    }
+
+    @GetMapping("/get-active-trucks/{page}/{pageSize}/{reference}")
     public Page<Truck> getDrivedTrucks(@PathVariable("page") int page, @PathVariable("pageSize") int pageSize, @PathVariable("reference") String reference) {
         return truckService.findDrivedTruck( page, pageSize);
     }

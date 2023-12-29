@@ -104,14 +104,19 @@ public class TruckService {
         }
     }
 
-    public Page<Truck> findAvailableTruck(int page, int pageSize){
+    public Page<Truck> findAllTruck(int page, int pageSize){
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by("id").ascending());
         return truckRepository.findAll(pageable);
     }
 
+    public Page<Truck> findAvailableTruck(int page, int pageSize){
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by("id").ascending());
+        return truckRepository.findAvailableTruck(pageable);
+    }
+
     public Page<Truck> findDrivedTruck(int page, int pageSize){
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by("id").ascending());
-        return truckRepository.findFreeTruck(pageable);
+        return truckRepository.findDrivedTruck(pageable);
     }
 
 }
